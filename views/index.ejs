@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurant Website</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Reset some default styles */
+    body,
+    h1,
+    h2,
+    h3,
+    p,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      /* font-family: 'Balsamiq Sans', cursive, "Roboto Mono";
+  font-size: 1.1rem;
+  text-align: justify; */
+    }
+
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-color: hsl(249, 100%, 50%);
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header a {
+      text-decoration: none;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style-type: none;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* section {
+      margin-top: 20px;
+    } */
+
+    #sub-headings {
+      padding-left: 20px;
+      text-shadow: 2px 2px 5px rgb(84, 90, 92);
+      font-size: 30px;
+      margin: 40px;
+      text-align: center;
+      font-family: "source sans pro", pro;
+      /* text-decoration: underline; */
+    }
+
+    .menu {
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      /* Allow items to wrap to the next line */
+      justify-content: space-around;
+    }
+
+    .menu-item {
+      width: 300px;
+      margin-bottom: 20px;
+      /* Add margin between menu items */
+      border-radius: 10px;
+      /* Add rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      /* Add shadow effect */
+      background-color: #ffffff;
+    }
+
+    .menu-item h3 {
+      margin: 10px;
+      text-align: center;
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .menu-text {
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 0;
+    }
+
+    .menu-item p {
+      margin-bottom: 10px;
+    }
+
+    .menu-item span {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      text-align: right;
+      padding-right: 10px;
+    }
+
+    .menu-item button {
+      display: block;
+      margin: 0 auto;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      /* Add smooth transition effect */
+    }
+
+    .menu-item button:hover {
+      background-color: #555;
+      /* Change background color on hover */
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      /* Move item slightly upwards on hover */
+    }
+
+    #testimonials {
+      background-color: #f9f9f9;
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .testimonial-slider {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .testimonial-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 0 20px;
+      max-width: 500px;
+    }
+
+    .testimonial-img {
+      display: flex;
+      align-items: center;
+    }
+
+    .testimonial-img img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      padding-right: 5px;
+    }
+
+    .testimonial-content {
+      margin-bottom: 20px;
+    }
+
+    .testimonial-content p {
+      font-size: 18px;
+    }
+
+    .testimonial-author {
+      font-style: italic;
+      color: #666;
+    }
+
+    .testimonial-card:hover {
+      transform: scale(1.05);
+    }
+
+    #about {
+      text-align: center;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Styles for the hero section */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Adjust height as needed */
+  overflow: hidden;
+  background-image: url('/public/assets/banner4.png'); /* Set the background image URL */
+  background-color: #f9f9f9; /* Set a fallback background color */
+  background-size: cover; /* Ensure the background image covers the entire section */
+  background-position: center; /* Center the background image */
+}
+
+
+    /* Styles for the image slider */
+    .swiper-slide {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Styles for the hero text */
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero-text h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    /* Styles for the button */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #555;
+    }
+
+    /* Styles for Swiper pagination and navigation buttons */
+    .swiper-pagination {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      /* background-color: rgba(0, 0, 0, 0.5); */
+      background-color: transparent;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .swiper-button-prev {
+      left: 10px;
+    }
+
+    .swiper-button-next {
+      right: 10px;
+    }
+
+    /* Styles for Swiper navigation arrows */
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-top: 4px solid #fff;
+      border-left: 4px solid #fff;
+      transform: rotate(-45deg);
+      box-shadow: -2px -2px rgb(116, 105, 116);
+    }
+
+    .swiper-button-next::after {
+      transform: rotate(135deg);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="/index">
+      <h1>SK Stop</h1>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="/menu">Menu</a></li>
+        <li><a href="/cart">Cart</a></li>
+        <li><a href="/users/<%= user._id %>">My Account</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="/public/assets/banner.png" alt="banner" />
+          <div class="hero-text">
+            <h2>Welcome to SK Stop</h2>
+            <p>
+              Discover our delicious dishes and enjoy exclusive discounts
+              today!
+            </p>
+            <a href="/menu" class="btn">Explore Menu</a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="/public/assets/banner1.png" alt="banner" />
+          <div class="hero-text">
+            <h2>Special Offer</h2>
+            <p>Get 25% off on all orders this weekend. Limited time offer!</p>
+            <a href="/menu" class="btn">View Offers</a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="/public/assets/banner2.png" alt="banner" />
+          <div class="hero-text">
+            <h2>Special Offer</h2>
+            <p>Get 25% off on all orders this weekend. Limited time offer!</p>
+            <a href="/menu" class="btn">View Offers</a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="/public/assets/banner3.png" alt="banner" />
+          <div class="hero-text">
+            <h2>Special Offer</h2>
+            <p>Get 25% off on all orders this weekend. Limited time offer!</p>
+            <a href="/menu" class="btn">View Offers</a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="/public/assets/banner4.png" alt="banner" />
+          <div class="hero-text">
+            <h2>Special Offer</h2>
+            <p>Get 25% off on all orders this weekend. Limited time offer!</p>
+            <a href="/menu" class="btn">View Offers</a>
+          </div>
+        </div>
+        <!-- Add more slides as needed -->
+      </div>
+      <!-- Add pagination and navigation buttons -->
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </section>
+
+  <% function getRandomItems(items, count) { const shuffled=items.sort(()=>
+    0.5 - Math.random()); return shuffled.slice(0, count); } %>
+
+    <!-- <h2 style="text-align: center;">Our Menu</h2> -->
+
+    <section>
+      <h2 id="sub-headings">Launched Today</h2>
+      <div class="menu">
+        <% const randomAppetizers=getRandomItems(menuItems, 4); %>
+          <% randomAppetizers.forEach(menuItem=> { %>
+            <div class="menu-item">
+              <div class="menu-img">
+                <img src="<%= menuItem.image %>" alt="<%= menuItem.name %>" />
+              </div>
+              <div class="menu-text">
+                <h3>
+                  <%= menuItem.name %>
+                </h3>
+                <p>
+                  <%= menuItem.description %>
+                </p>
+                <span>$<%= menuItem.price %></span>
+                <form action="/add-to-cart/<%= menuItem._id %>" method="POST">
+                  <button type="submit">Add to cart</button>
+                </form>
+              </div>
+            </div>
+            <% }); %>
+      </div>
+    </section>
+
+    <!-- Repeat the same pattern for Main Courses and Desserts sections -->
+
+    <section>
+      <h2 id="sub-headings">Featured Products</h2>
+      <div class="menu">
+        <% const randomMainCourses=getRandomItems(menuItems, 4); %>
+          <% randomMainCourses.forEach(menuItem=> { %>
+            <div class="menu-item">
+              <div class="menu-img">
+                <img src="<%= menuItem.image %>" alt="<%= menuItem.name %>" />
+              </div>
+              <div class="menu-text">
+                <h3>
+                  <%= menuItem.name %>
+                </h3>
+                <p>
+                  <%= menuItem.description %>
+                </p>
+                <span>$<%= menuItem.price %></span>
+                <form action="/add-to-cart/<%= menuItem._id %>" method="POST">
+                  <button type="submit">Add to cart</button>
+                </form>
+              </div>
+            </div>
+            <% }); %>
+      </div>
+    </section>
+
+    <section>
+      <h2 id="sub-headings">Best Sellers</h2>
+      <div class="menu">
+        <% const randomDesserts=getRandomItems(menuItems, 4); %>
+          <% randomDesserts.forEach(menuItem=> { %>
+            <div class="menu-item">
+              <div class="menu-img">
+                <img src="<%= menuItem.image %>" alt="<%= menuItem.name %>" />
+              </div>
+              <div class="menu-text">
+                <h3>
+                  <%= menuItem.name %>
+                </h3>
+                <p>
+                  <%= menuItem.description %>
+                </p>
+                <span>$<%= menuItem.price %></span>
+                <form action="/add-to-cart/<%= menuItem._id %>" method="POST">
+                  <button type="submit">Add to cart</button>
+                </form>
+              </div>
+            </div>
+            <% }); %>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <h2>What Our Customers Say</h2>
+      <div class="testimonial-slider">
+        <div class="testimonial-card">
+          <div class="testimonial-img">
+            <img src="/public/assets/background.jpg" alt="testimonial image 1" />
+            <div class="testimonial-content">
+              <p>
+                "The food at SK Stop is absolutely delicious! I love their
+                variety of dishes and excellent service."
+              </p>
+              <span class="testimonial-author">- John Doe, New York</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-img">
+            <img src="/public/assets/background.jpg" alt="testimonial image 1" />
+            <div class="testimonial-content">
+              <p>
+                "The food at SK Stop is absolutely delicious! I love their
+                variety of dishes and excellent service."
+              </p>
+              <span class="testimonial-author">- John Doe, New York</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-img">
+            <img src="/public/assets/background.jpg" alt="testimonial image 1" />
+            <div class="testimonial-content">
+              <p>
+                "The food at SK Stop is absolutely delicious! I love their
+                variety of dishes and excellent service."
+              </p>
+              <span class="testimonial-author">- John Doe, New York</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add more testimonial cards here -->
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About Us</h2>
+      <p>
+        Welcome to SK Stop Store! We sell everything for good and affordable
+        prices, we were availble all over India.
+      </p>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 SK Stop Store. All rights reserved.</p>
+    </footer>
+
+    <!-- Include Swiper.js library -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+      var swiper = new Swiper(".swiper-container", {
+        // Optional parameters
+        loop: true,
+        autoplay: {
+          delay: 5000,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+</body>
+
+</html>

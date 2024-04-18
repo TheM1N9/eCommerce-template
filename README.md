@@ -1,0 +1,1 @@
+A web template for an eCommerce website.

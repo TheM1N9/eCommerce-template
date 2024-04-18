@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Aatagallu | Login Page</title>
+    <meta name="keywords" content="CineLens, The CineLens, cinlens web, Movies, Series, Free Download, Telegram" />
+    <link rel="icon" type="image/png"
+        href="https://user-images.githubusercontent.com/103044819/220179083-16f84162-1507-4d73-935b-848c267648c6.jpg" />
+
+        <style>
+            body {
+                background-image: url("/public/assets/background.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+                margin: 0;
+                font-family: Arial, sans-serif;
+            }
+    
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+    
+            form {
+                background-color: #f2f2f2;
+                padding: 30px; /* Increased padding for smaller screens */
+                border-radius: 5px;
+                box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+                width: 300px;
+                text-align: center;
+            }
+    
+            input[type="email"],
+            input[type="text"],
+            input[type="password"] {
+                width: 100%;
+                padding: 14px 20px; /* Increased padding for smaller screens */
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+            }
+    
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 16px 20px; /* Increased padding for smaller screens */
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            button:hover{
+                background-color: #3ec442;
+            }
+
+            #logoutButton{
+                background-color: rgb(193, 91, 91);
+            }
+
+            #logoutButton:hover{
+                background-color: red;
+            }
+    
+            p {
+                margin-top: 10px;
+            }
+    
+            /* Media Queries for responsiveness */
+            @media only screen and (max-width: 768px) {
+                form {
+                    width: 80%;
+                }
+    
+                input[type="email"],
+                input[type="text"],
+                input[type="password"] {
+                    padding: 12px 18px; /* Adjusted padding for smaller screens */
+                }
+    
+                button {
+                    padding: 14px 18px; /* Adjusted padding for smaller screens */
+                }
+            }
+    
+            @media only screen and (max-width: 480px) {
+                form {
+                    width: 90%;
+                }
+            }
+        </style>
+</head>
+
+<body>
+    <div class="container">
+        <form id="loginForm" action="/menu/add" method="POST">
+            <h2>SK Stop</h2>
+            <!-- <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required> -->
+
+            <input type="text" name="name" id="name" placeholder="Enter Item name" required>
+            <input type="text" name="description" id="description" placeholder="Enter Item description" required>
+            <input type="text" name="price" id="price" placeholder="Enter Item price" required>
+            <input type="text" name="image" id="image" placeholder="Enter Item image url" required>
+            <button type="submit">Add item</button>
+            <button id="logoutButton">Logout</button>
+            <!-- <p>New User ?? <a href="/userSignup">Signup</a> </p> -->
+        </form>
+        
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            // const username = document.getElementById("username").value;
+            // const password = document.getElementById("password").value;
+            
+
+            const name = document.getElementById("name").value;
+            const description= document.getElementById("description").value;
+            const price = document.getElementById("price").value;
+            const image = document.getElementById("image").value;
+            fetch('/menu/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    description:description,
+                    price:price,
+                    image:image
+                    // password: password
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '/menuAdd';
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred, please try again later.');
+            });
+        });
+
+        document.getElementById("logoutButton").addEventListener("click", function () {
+      fetch("/adminLogout", {
+        method: "GET",
+      })
+        .then((response) => {
+          if (response.redirected) {
+            // Redirect to the login page after successful logout
+            window.location.href = response.url;
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("An error occurred during logout.");
+        });
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* Reset some default styles */
+      body,
+      h1,
+      h2,
+      h3,
+      p,
+      ul,
+      li {
+        margin: 0;
+        padding: 0;
+      }
+  
+      /* Basic styling */
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f9f9f9;
+      }
+  
+      header {
+        background-color: hsl(249, 100%, 50%);
+        color: #fff;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      header a{
+            text-decoration: none;
+            color: white;
+        }
+  
+      header h1 {
+        margin: 0;
+      }
+  
+      nav ul {
+        list-style-type: none;
+      }
+  
+      nav ul li {
+        display: inline;
+        margin-right: 20px;
+      }
+  
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+  
+      section#about {
+        background-color: #f5f5f5;
+        text-align: center;
+        padding: 40px 20px;
+      }
+  
+      h2,
+      h3 {
+        margin: 20px;
+        color: #333;
+      }
+  
+      .menu {
+        padding: 0 0;
+        display: flex;
+        flex-wrap: wrap;
+        /* Allow items to wrap to next line */
+        justify-content: center;
+      }
+  
+      .menu-item {
+        text-align: center;
+        margin: 20px;
+        /* Add margin between menu items */
+        /* padding: 20px; */
+        border-radius: 10px;
+        /* Add rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Add shadow effect */
+        transition: transform 0.3s ease;
+        /* Add smooth transition effect */
+        background-color: #ffffff;
+      }
+  
+      .menu-item h3{
+        margin: 0;
+      }
+  
+      .menu-item img {
+        width: 315px;
+        height: 200px;
+        object-fit: cover;
+      }
+  
+      .menu-img {
+        overflow: hidden;
+        border-radius: 10px ;
+      }
+  
+      .menu-text {
+        margin: 0 20px 20px;
+      }
+  
+      .menu-item p {
+        color: #777;
+      }
+  
+      .menu-item span {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+  
+      .menu-item button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        /* Add smooth transition effect */
+      }
+  
+      .menu-item button:hover {
+        background-color: #555;
+        /* Change background color on hover */
+      }
+  
+      .menu-item:hover {
+        transform: translateY(-5px);
+        /* Move item slightly upwards on hover */
+      }
+  
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+      }
+    </style>
+</head>
+
+<body>
+    <header>
+      <a href="/index"><h1>SK Stop</h1></a>
+        <nav>
+            <ul>
+                <li><a href="/cart">Cart</a></li>
+                <li><a href="/users/<%= user._id %>">My Account</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h2 style="text-align: center;">Our Menu</h2>
+
+    <section class="menu">
+        <% menuItems.forEach(menuItem => { %>
+        <div class="menu-item">
+            <div class="menu-img">
+                <img src="<%= menuItem.image %>" alt="<%= menuItem.name %>">
+            </div>
+            <div class="menu-text">
+                <h3><%= menuItem.name %></h3>
+                <p><%= menuItem.description %></p>
+                <span>$<%= menuItem.price %></span>
+                <form action="/add-to-cart/<%= menuItem._id %>" method="POST">
+                    <button type="submit">Add to cart</button>
+                </form>
+            </div>
+        </div>
+        <% }); %>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SK Stop Store. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

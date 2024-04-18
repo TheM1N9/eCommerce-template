@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Website</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Reset some default styles */
+    body,
+    h1,
+    h2,
+    h3,
+    p,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style-type: none;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 40px 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      padding: 0 0;
+      display: flex;
+      flex-wrap: wrap; /* Allow items to wrap to next line */
+      justify-content: center;
+    }
+
+    .menu-item {
+      text-align: center;
+      margin: 20px; /* Add margin between menu items */
+      padding: 20px; /* Add padding for spacing */
+      border-radius: 10px; /* Add rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+      transition: transform 0.3s ease; /* Add smooth transition effect */
+    }
+
+    .menu-item img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .menu-item h3 {
+      margin-top: 20px;
+    }
+
+    .menu-item p {
+      color: #777;
+    }
+
+    .menu-item span {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .menu-item button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease; /* Add smooth transition effect */
+    }
+
+    .menu-item button:hover {
+      background-color: #555; /* Change background color on hover */
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px); /* Move item slightly upwards on hover */
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Delicious Eats</h1>
+    <nav>
+      <ul>
+        <li><a href="/cart">Cart</a></li>
+        <li><a href="/Account">My Account</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="about" style="text-align: center;">
+    <h2 style="margin: 0 0;">About Us</h2>
+    <p>Welcome to Delicious Eats Restaurant! We specialize in serving mouthwatering dishes prepared with fresh, locally
+      sourced ingredients.</p>
+  </section>
+
+  <h2 style="text-align: center;">Our Menu</h2>
+  <h2 style="padding-left: 20px;">Appetizers</h2>
+  <section class="menu">
+
+    <div class="menu-item">
+      <img src="./assets/chicken-65.png" alt="Food Item">
+      <h3>Food Item Name</h3>
+      <p>Description of the food item goes here.</p>
+      <span>$10</span>
+      <button>Add to cart</button>
+
+    </div>
+    <div class="menu-item">
+      <img src="./assets/chicken-65.png" alt="Food Item">
+      <h3>Food Item Name</h3>
+      <p>Description of the food item goes here.</p>
+      <span>$10</span>
+      <button>Add to cart</button>
+
+    </div>
+    <div class="menu-item">
+      <img src="./assets/chicken-65.png" alt="Food Item">
+      <h3>Food Item Name</h3>
+      <p>Description of the food item goes here.</p>
+      <span>$10</span>
+      <button>Add to cart</button>
+
+    </div>
+    <div class="menu-item">
+      <img src="./assets/chicken-65.png" alt="Food Item">
+      <h3>Food Item Name</h3>
+      <p>Description of the food item goes here.</p>
+      <span>$10</span>
+      <button>Add to cart</button>
+
+    </div>
+  </section>
+
+  <h2 style="padding-left: 20px;">Main Courses</h2>
+  <section class="menu">
+
+    <div class="menu-item">
+      <img src="./assets/chicken-65.png" alt="Food Item">
+      <h3>Food Item Name</h3>
+      <p>Description of the food item goes here.</p>
+      <span>$10</span>
+      <button>Add to cart</button>
+
+
+    </div>
+    <div class="menu-item">
+      <img src="./assets/chicken-65.png" alt="Food Item">
+      <h3>Food Item Name</h3>
+      <p>Description of the food item goes here.</p>
+      <span>$10</span>
+      <button>Add to cart</button>
+
+
+    </div>
+    <div class="menu-item">
+      <img src="./assets/chicken-65.png" alt="Food Item">
+      <h3>Food Item Name</h3>
+      <p>Description of the food item goes here.</p>
+      <span>$10</span>
+      <button>Add to cart</button>
+
+    </div>
+    <div class="menu-item">
+      <img src="./assets/chicken-65.png" alt="Food Item">
+      <h3>Food Item Name</h3>
+      <p>Description of the food item goes here.</p>
+      <span>$10</span>
+      <button>Add to cart</button>
+
+    </div>
+  </section>
+
+  <h2 style="padding-left: 20px;">Desserts</h2>
+  <section class="menu">
+
+    <div class="menu-item">
+      <img src="./assets/chicken-65.png" alt="Food Item">
+      <h3>Food Item Name</h3>
+      <p>Description of the food item goes here.</p>
+      <span>$10</span>
+      <button>Add to cart</button>
+
+    </div>
+    <div class="menu-item">
+      <img src="./assets/chicken-65.png" alt="Food Item">
+      <h3>Food Item Name</h3>
+      <p>Description of the food item goes here.</p>
+      <span>$10</span>
+      <button>Add to cart</button>
+
+    </div>
+    <div class="menu-item">
+      <img src="./assets/chicken-65.png" alt="Food Item">
+      <h3>Food Item Name</h3>
+      <p>Description of the food item goes here.</p>
+      <span>$10</span>
+      <button>Add to cart</button>
+
+    </div>
+    <div class="menu-item">
+      <img src="./assets/chicken-65.png" alt="Food Item">
+      <h3>Food Item Name</h3>
+      <p>Description of the food item goes here.</p>
+      <span>$10</span>
+      <button>Add to cart</button>
+
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>For reservations or inquiries, please call us at <strong>(123) 456-7890</strong> or email us at
+      <strong>info@deliciouseats.com</strong>.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Delicious Eats Restaurant. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
