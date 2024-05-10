@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
     <style>
       /* Reset some default styles */
       body,
@@ -27,7 +28,7 @@
       }
   
       header {
-        background-color: hsl(249, 100%, 50%);
+        background-color: burlywood;
         color: #fff;
         padding: 20px;
         display: flex;
@@ -46,6 +47,8 @@
   
       nav ul {
         list-style-type: none;
+        display: flex;
+        align-items: center;
       }
   
       nav ul li {
@@ -148,14 +151,62 @@
         text-align: center;
         padding: 20px;
       }
+      form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* margin-top: 20px; */
+    }
+
+    .search-box {
+      position: relative;
+      width: 250px;
+      margin: 0 auto;
+      /* margin-bottom: 40px; */
+      color: #d60606;
+    }
+
+    .search-box input[type="text"] {
+      height: 42px;
+      width: 80%;
+      outline: none;
+      border: none;
+      background-color: #ffffff;
+      padding-left: 45px;
+      /* color: #000000; */
+      border-radius: 6px;
+    }
+
+    .search-box i {
+      position: absolute;
+      /* z-index: 2; */
+      color: #333;
+      top: 50%;
+      left: 15px;
+      font-size: 20px;
+      transform: translateY(-50%);
+    }
+
     </style>
 </head>
 
 <body>
     <header>
-      <a href="/index"><h1>SK Stop</h1></a>
+      <a href="/index" style="display: flex; align-items: center; gap: 5px;">
+        <img src="/public/assets/logo1.png" alt="logo" width="50px" height="50px" style="border-radius: 50%;">
+        <h1>Urban Trends</h1>
+      </a>
         <nav>
             <ul>
+              <li>
+                <form action="/search" method="post">
+                    <div class="search-box">
+                      <!-- <i class="bx bx-search"></i> -->
+                      <i class="fa fa-search"></i>
+                      <input type="text" placeholder="Search" oninput="searchCards(this.value)" />
+                    </div>
+                </form>
+            </li>
                 <li><a href="/cart">Cart</a></li>
                 <li><a href="/users/<%= user._id %>">My Account</a></li>
             </ul>
@@ -183,7 +234,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 SK Stop Store. All rights reserved.</p>
+        <p>&copy; 2024 Urban Trends Store. All rights reserved.</p>
     </footer>
 </body>
 

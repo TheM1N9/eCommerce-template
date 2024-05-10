@@ -5,14 +5,13 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("./models/User");
-const MenuItem = require('./models/MenuItem');
+const MenuItem = require("./models/MenuItem");
 const Admin = require("./models/Admin");
 const app = express();
 
-// app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.use("/public", express.static(__dirname + "/public"));
-app.use('/assets', express.static(__dirname + '/assets'));
+app.use("/assets", express.static(__dirname + "/assets"));
 
 app.use(
   session({
@@ -178,8 +177,6 @@ app.post("/adminSignupForm", async (req, res) => {
   }
 });
 
-
-
 // Route to handle adding menu items (if needed)
 app.post("/menu/add", async (req, res) => {
   try {
@@ -197,7 +194,9 @@ app.post("/menu/add", async (req, res) => {
     // Save the menu item to the database
     await menuItem.save();
 
-    res.status(201).json({ success: true, message: "Menu item added successfully" });
+    res
+      .status(201)
+      .json({ success: true, message: "Menu item added successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Internal server error" });
@@ -212,17 +211,16 @@ app.get("/menu", requireLogin, async (req, res) => {
     // Fetch all menu items from the database
     const menuItems = await MenuItem.find();
 
-    res.render("menu", { menuItems,user });
+    res.render("menu", { menuItems, user });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
 });
 
-app.get("/menuAdd", requireAdminLogin, async(req,res) =>{
+app.get("/menuAdd", requireAdminLogin, async (req, res) => {
   res.render("menuAdd");
 });
-
 
 // Route to handle adding items to cart
 app.post("/add-to-cart/:itemId", async (req, res) => {
@@ -239,40 +237,43 @@ app.post("/add-to-cart/:itemId", async (req, res) => {
     // Save the updated user object
     await user.save();
 
-    // res.redirect("/cart"); 
+    // res.redirect("/cart");
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
 });
 
-app.delete('/cart/remove/:itemId', async (req, res) => {
+app.delete("/cart/remove/:itemId", async (req, res) => {
   const userId = req.session.userId; // Assuming you're using session and userId is stored
   const itemId = req.params.itemId;
 
   try {
-      // Find the user by ID and update their cart by removing the specified item
-      const user = await User.findByIdAndUpdate(userId, { $pull: { cart: itemId } }, { new: true });
+    // Find the user by ID and update their cart by removing the specified item
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $pull: { cart: itemId } },
+      { new: true }
+    );
 
-      if (!user) {
-          return res.status(404).json({ error: 'User not found' });
-      }
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
 
-      res.status(200).json({ message: 'Item removed from cart successfully', user: user });
+    res
+      .status(200)
+      .json({ message: "Item removed from cart successfully", user: user });
   } catch (error) {
-      console.error('Error removing item from cart:', error);
-      res.status(500).json({ error: 'Internal server error' });
+    console.error("Error removing item from cart:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
-
-
-
 
 // Route to display the cart page
 app.get("/cart", requireLogin, async (req, res) => {
   try {
     const userId = req.session.userId;
-    const user = await User.findById(userId).populate('cart');
+    const user = await User.findById(userId).populate("cart");
 
     res.render("cart", { user });
   } catch (error) {
@@ -281,8 +282,22 @@ app.get("/cart", requireLogin, async (req, res) => {
   }
 });
 
+app.post("/search", async (req, res) => {
+  try {
+    const { query } = req.query;
+    const user = await User.findOne();
+    const menuItems = await MenuItem.find({
+      title: { $regex: new RegExp(query, "i") },
+    });
+    res.render("searchResults", { menuItems, user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 app.get("/userlogin", (req, res) => {
-  res.render("login")
+  res.render("login");
 });
 
 app.get("/userSignup", (req, res) => {
@@ -326,9 +341,47 @@ app.get("/users/:id", requireLogin, async (req, res) => {
   }
 });
 
-// app.get("/menu", requireLogin, async (req, res) => {
-//   res.render("menu");
-// });
+// POST route to handle changing the password
+app.post("/changePassword", async (req, res) => {
+  const { currentPassword, newPassword, confirmPassword } = req.body;
+  const userId = req.session.userId; // Retrieve user ID from session
+
+  try {
+    // Fetch the user from the database
+    const user = await User.findById(userId);
+
+    // Verify if the current password provided matches the user's current password
+    const passwordMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!passwordMatch) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Current password is incorrect" });
+    }
+
+    // Verify if the new password and confirm password match
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "New password and confirm password do not match",
+      });
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the user's password in the database with the hashed password
+    user.password = hashedPassword;
+    await user.save();
+
+    res
+      .status(200)
+      .json({ success: true, message: "Password updated successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
 app.get("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/userlogin");
@@ -339,6 +392,5 @@ app.get("/adminLogout", (req, res) => {
   res.redirect("/adminlogin");
 });
 
-
 const port = 3000;
-app.listen(port, () => console.log(`server running ...`));
+app.listen(port, () => console.log(`server running on port ${port}`));

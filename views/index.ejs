@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Restaurant Website</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>eCommerce Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="styles.css" /> -->
   <style>
     /* Reset some default styles */
     body,
@@ -22,15 +23,24 @@
   text-align: justify; */
     }
 
+    h1,
+    h2,
+    h3,
+    p,
+    ul,
+    li,marquee{
+      line-height: 1.6;
+    }
+
     /* Basic styling */
     body {
       font-family: Arial, sans-serif;
-      line-height: 1.6;
+      line-height: 0.7;
       background-color: #f9f9f9;
     }
 
     header {
-      background-color: hsl(249, 100%, 50%);
+      background-color: burlywood;
       color: #fff;
       padding: 20px;
       display: flex;
@@ -47,31 +57,42 @@
       margin: 0;
     }
 
-    nav ul {
+    ul {
       list-style-type: none;
+      display: flex;
+      align-items: center;
     }
 
-    nav ul li {
+    ul li {
       display: inline;
       margin-right: 20px;
     }
 
-    nav ul li a {
+    ul li a {
       color: #fff;
       text-decoration: none;
     }
 
-    /* section {
-      margin-top: 20px;
-    } */
+    .container {
+      padding-block: 10px;
+    }
+
+    marquee {
+      text-align: center;
+      font-size: 30px;
+      background-color: aquamarine;
+      margin: 0;
+      padding: 0;
+    }
 
     #sub-headings {
-      padding-left: 20px;
-      text-shadow: 2px 2px 5px rgb(84, 90, 92);
+      padding-left: 40px;
+      /* text-shadow: 2px 2px 5px rgb(84, 90, 92); */
       font-size: 30px;
-      margin: 40px;
-      text-align: center;
+      /* margin: 40px; */
+      /* text-align: center; */
       font-family: "source sans pro", pro;
+      /* color: white; */
       /* text-decoration: underline; */
     }
 
@@ -202,6 +223,29 @@
 
     #about {
       text-align: center;
+      display: flex;
+      /* justify-content: space-evenly; */
+      align-items: center;
+      padding-inline: 50px;
+    }
+
+    #about div {
+      flex-basis: 100%;
+    }
+
+    .about-text {
+      text-align: center;
+    }
+
+    .about-img {
+      margin-block: 50px;
+
+    }
+
+    .about-img img {
+      width: 400px;
+      height: 400px;
+      border-radius: 20px;
     }
 
     footer {
@@ -209,19 +253,27 @@
       color: #fff;
       text-align: center;
       padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     /* Styles for the hero section */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 400px; /* Adjust height as needed */
-  overflow: hidden;
-  background-image: url('/public/assets/banner4.png'); /* Set the background image URL */
-  background-color: #f9f9f9; /* Set a fallback background color */
-  background-size: cover; /* Ensure the background image covers the entire section */
-  background-position: center; /* Center the background image */
-}
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      /* Adjust height as needed */
+      overflow: hidden;
+      background-image: url('/public/assets/banner4.png');
+      /* Set the background image URL */
+      background-color: #f9f9f9;
+      /* Set a fallback background color */
+      background-size: cover;
+      /* Ensure the background image covers the entire section */
+      background-position: center;
+      /* Center the background image */
+    }
 
 
     /* Styles for the image slider */
@@ -320,16 +372,63 @@
     .swiper-button-next::after {
       transform: rotate(135deg);
     }
+
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* margin-top: 20px; */
+    }
+
+    .search-box {
+      position: relative;
+      width: 250px;
+      margin: 0 auto;
+      /* margin-bottom: 40px; */
+      color: #d60606;
+    }
+
+    .search-box input[type="text"] {
+      height: 42px;
+      width: 80%;
+      outline: none;
+      border: none;
+      background-color: #ffffff;
+      padding-left: 45px;
+      /* color: #000000; */
+      border-radius: 6px;
+    }
+
+    .search-box i {
+      position: absolute;
+      /* z-index: 2; */
+      color: #333;
+      top: 50%;
+      left: 15px;
+      font-size: 20px;
+      transform: translateY(-50%);
+    }
+
   </style>
 </head>
 
 <body>
   <header>
-    <a href="/index">
-      <h1>SK Stop</h1>
+    <a href="/index" style="display: flex; align-items: center; gap: 5px;">
+      <img src="/public/assets/logo1.png" alt="logo" width="50px" height="50px" style="border-radius: 50%;">
+      <h1>Urban Trends</h1>
     </a>
     <nav>
       <ul>
+        <li>
+          <form action="/search" method="post">
+              <div class="search-box">
+                <!-- <i class="bx bx-search"></i> -->
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="Search" oninput="searchCards(this.value)" />
+              </div>
+          </form>
+      </li>
         <li><a href="/menu">Menu</a></li>
         <li><a href="/cart">Cart</a></li>
         <li><a href="/users/<%= user._id %>">My Account</a></li>
@@ -343,7 +442,7 @@
         <div class="swiper-slide">
           <img src="/public/assets/banner.png" alt="banner" />
           <div class="hero-text">
-            <h2>Welcome to SK Stop</h2>
+            <h2>Welcome to Urban Trends</h2>
             <p>
               Discover our delicious dishes and enjoy exclusive discounts
               today!
@@ -395,9 +494,12 @@
   <% function getRandomItems(items, count) { const shuffled=items.sort(()=>
     0.5 - Math.random()); return shuffled.slice(0, count); } %>
 
-    <!-- <h2 style="text-align: center;">Our Menu</h2> -->
+    <!-- <marquee behavior="" direction="left" scrollamount="5">Free Delivery . Free Delivery . Free Delivery . Free Delivery
+      . Free Delivery . Free Delivery . Free Delivery . Free Delivery</marquee> -->
 
-    <section>
+
+
+    <section class="container">
       <h2 id="sub-headings">Launched Today</h2>
       <div class="menu">
         <% const randomAppetizers=getRandomItems(menuItems, 4); %>
@@ -423,10 +525,31 @@
       </div>
     </section>
 
-    <!-- Repeat the same pattern for Main Courses and Desserts sections -->
+    <!-- <marquee behavior="scroll" direction="right" scrollamount="5" loop="true">
+      All over India . All over India . All over India . All over India. All over India. All over India. All over India. All over India. All over India. All over India. All over India. All over India. All over India . All over India . All over India . All over India . All over India
+  </marquee> -->
 
-    <section>
-      <h2 id="sub-headings">Featured Products</h2>
+   <!-- <marquee behavior="" direction="top" style="background-color: white;" scrollamount="10">
+      <div style="display: flex;">
+        <div class="semi-circle" style="background-color: yellow; border-radius: 70% 70% 0 0; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 70% 70% 0 0; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 70% 70% 0 0; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 70% 70% 0 0; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 70% 70% 0 0; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 70% 70% 0 0; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 70% 70% 0 0; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 70% 70% 0 0; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 70% 70% 0 0; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 70% 70% 0 0; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 70% 70% 0 0; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 70% 70% 0 0; width: 150px; height: 50px;"> </div>
+    </div>
+  </marquee> -->
+
+
+
+    <section class="container">
+      <h2 id="sub-headings" style="color: black;">Featured Products</h2>
       <div class="menu">
         <% const randomMainCourses=getRandomItems(menuItems, 4); %>
           <% randomMainCourses.forEach(menuItem=> { %>
@@ -451,7 +574,24 @@
       </div>
     </section>
 
-    <section>
+    <!-- <marquee behavior="" direction="right" style="background-color: white;" scrollamount="10">
+      <div style="display: flex;">
+        <div class="semi-circle" style="background-color: yellow; border-radius: 0 0 70% 70%; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 0 0 70% 70%; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 0 0 70% 70%; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 0 0 70% 70%; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 0 0 70% 70%; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 0 0 70% 70%; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 0 0 70% 70%; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 0 0 70% 70%; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 0 0 70% 70%; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 0 0 70% 70%; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 0 0 70% 70%; width: 150px; height: 50px;"> </div>
+        <div class="semi-circle" style="background-color: yellow; border-radius: 0 0 70% 70%; width: 150px; height: 50px;"> </div>
+    </div>
+  </marquee> -->
+
+    <section class="container">
       <h2 id="sub-headings">Best Sellers</h2>
       <div class="menu">
         <% const randomDesserts=getRandomItems(menuItems, 4); %>
@@ -482,10 +622,10 @@
       <div class="testimonial-slider">
         <div class="testimonial-card">
           <div class="testimonial-img">
-            <img src="/public/assets/background.jpg" alt="testimonial image 1" />
+            <img src="/public/assets/profile1.png" alt="testimonial image 1" />
             <div class="testimonial-content">
               <p>
-                "The food at SK Stop is absolutely delicious! I love their
+                "The food at Urban Trends is absolutely delicious! I love their
                 variety of dishes and excellent service."
               </p>
               <span class="testimonial-author">- John Doe, New York</span>
@@ -495,10 +635,10 @@
 
         <div class="testimonial-card">
           <div class="testimonial-img">
-            <img src="/public/assets/background.jpg" alt="testimonial image 1" />
+            <img src="/public/assets/profile2.png" alt="testimonial image 1" />
             <div class="testimonial-content">
               <p>
-                "The food at SK Stop is absolutely delicious! I love their
+                "The food at Urban Trends is absolutely delicious! I love their
                 variety of dishes and excellent service."
               </p>
               <span class="testimonial-author">- John Doe, New York</span>
@@ -508,10 +648,10 @@
 
         <div class="testimonial-card">
           <div class="testimonial-img">
-            <img src="/public/assets/background.jpg" alt="testimonial image 1" />
+            <img src="/public/assets/profile3.png" alt="testimonial image 1" />
             <div class="testimonial-content">
               <p>
-                "The food at SK Stop is absolutely delicious! I love their
+                "The food at Urban Trends is absolutely delicious! I love their
                 variety of dishes and excellent service."
               </p>
               <span class="testimonial-author">- John Doe, New York</span>
@@ -524,15 +664,52 @@
     </section>
 
     <section id="about">
-      <h2>About Us</h2>
-      <p>
-        Welcome to SK Stop Store! We sell everything for good and affordable
-        prices, we were availble all over India.
-      </p>
+      <div class="about-text">
+        <h2>About Us</h2>
+        <p style="text-align: justify;">
+          Welcome to Urban Trends Store! We sell everything for good and affordable
+          prices, we were availble all over India.
+          Welcome to Urban Trends Store! We sell everything for good and affordable
+          prices, we were availble all over India.Welcome to Urban Trends Store! We sell everything for good and
+          affordable
+          prices, we were availble all over India.Welcome to Urban Trends Store! We sell everything for good and
+          affordable
+          prices, we were availble all over India.Welcome to Urban Trends Store! We sell everything for good and
+          affordable
+          prices, we were availble all over India.Welcome to Urban Trends Store! We sell everything for good and
+          affordable
+          prices, we were availble all over India.Welcome to Urban Trends Store! We sell everything for good and
+          affordable
+          prices, we were availble all over India.Welcome to Urban Trends Store! We sell everything for good and
+          affordable
+          prices, we were availble all over India.Welcome to Urban Trends Store! We sell everything for good and
+          affordable
+          prices, we were availble all over India.Welcome to Urban Trends Store! We sell everything for good and
+          affordable
+          prices, we were availble all over India.Welcome to Urban Trends Store! We sell everything for good and
+          affordable
+          prices, we were availble all over India.
+        </p>
+      </div>
+      <div class="about-img">
+        <img src="/public/assets/logo.png" alt="">
+      </div>
+
     </section>
 
     <footer>
-      <p>&copy; 2024 SK Stop Store. All rights reserved.</p>
+      <p>&copy; 2024 Urban Trends Store. All rights reserved.</p>
+      <ul>
+        <li><a href="instagram.com/m1n9.exe">
+            <i class="fa fa-instagram" style="font-size:24px"></i>
+          </a></li>
+        <li><a href="instagram.com/m1n9.exe">
+            <i class="fa fa-twitter" style="font-size:24px"></i>
+          </a></li>
+        <li><a href="instagram.com/m1n9.exe">
+            <i class="fa fa-youtube-play" style="font-size:24px"></i>
+          </a></li>
+      </ul>
     </footer>
 
     <!-- Include Swiper.js library -->
@@ -541,9 +718,9 @@
       var swiper = new Swiper(".swiper-container", {
         // Optional parameters
         loop: true,
-        autoplay: {
-          delay: 5000,
-        },
+        // autoplay: {
+        //   delay: 5000,
+        // },
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
